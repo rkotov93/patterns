@@ -1,3 +1,4 @@
+# Fluable implementation without fly possibility
 module Flyable
   class NoWay
     def fly

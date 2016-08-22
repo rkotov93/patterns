@@ -5,6 +5,7 @@ module Observable
 
   def add_observer(observer, method = :update)
     raise "Observer should implement method #{method}" unless observer.respond_to? method
+    @method = method
     observers << observer
   end
 
@@ -23,7 +24,7 @@ module Observable
   def notify_observers(*args)
     return unless changed?
     observers.each do |observer|
-      observer.update(*args)
+      observer.public_send(@method, *args)
     end
   end
 end
